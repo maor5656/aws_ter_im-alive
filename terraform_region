@@ -1,0 +1,37 @@
+#!/bin/bash
+
+function display_usage() {
+        cat <<EOF
+Usage: $0
+	 [--ssh]
+
+Arguments:
+    --ssh                        The region of Instance to create on
+
+EOF
+        exit 1
+}
+
+function handle_parameters() {
+	ssh=""
+
+	until [ -z $1 ]; do
+            case $1 in
+            --ssh )
+            ssh=$2
+            shift
+            ;;
+            esac
+        shift
+    done
+
+
+    if  [ "$ssh" == "" ]; then
+          echo "ssh is missing"
+          display_usage
+	fi
+}
+
+handle_parameters "$@"
+
+terraform apply -var ssh_key_name="$1" 
