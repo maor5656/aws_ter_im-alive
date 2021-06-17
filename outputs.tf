@@ -1,8 +1,10 @@
+# Add here the name of the instance a output
 output "id" {
   description = "List of IDs of instances"
   value       = aws_instance.centos.id
 }
 
+# Y print it?
 output "key_name" {
   description = "List of key names of instances"
   value       = aws_instance.centos.key_name
